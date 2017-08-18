@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Chatter</title>
+	<link rel="stylesheet" href="/css/materialize.min.css">
+	<link href="/css/materialicon.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/chat.css">
+
+  <link rel="icon" href="/html/favicon.png">
+
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="user-area"> 
+<nav>
+  <div class="nav-wrapper teal lighten-2">
+    <div class="chip" id="userName">
+      <img src="<%= user.image %>" alt="Contact Person">
+      <%= user.username %>
+    </div>
+    <ul class="right">
+      <li><a href="/logout">logout</a></li>
+      <li><a href="/edit-profile/<%= user.username %>"><i class="material-icons">edit</i></a></li>
+    </ul>
+  </div>
+</nav>
+
+<nav>
+  <div class="nav-wrapper">
+    <form>
+      <div class="input-field">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons" id="clear">close</i>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<div class="collection scroll" id="list">
+  <% for(var i=0;i<users.length;i++) { if(users[i].username!==user.username) {%>
+    <a class="collection-item" id="<%= users[i].username %>"><img class="profile pull-left" src="<%= users[i].image %>"><p class="profile-name" id="username"><%= users[i].username %></p><%= users[i].name %><span class="badge green" id="newMessage"></span><span class="badge" id="status"></span></a>
+  <% } } %>
+</div>
+
+
+</div>
+
+<div class="chat-area" id="friendArea">
+  <nav>
+    <div class="nav-wrapper teal lighten-2" id="friend">
+      
+    </div>
+  </nav>
+          
+
+
+  <div class="scroll chat-window" id="chatWindow">
+    <div class="chat" id="chatArea">
+
+    <div class="bubble-container"><div class="bubble me">Hello !</div></div>
+    <div class="bubble-container"><div class="bubble me">Welcome !</div></div>
+    <div class="bubble-container"><div class="bubble me">How are you ?</div></div>
+    <div class="bubble-container"><div class="bubble you">I'm fine...</div></div>
+    <div class="bubble-container"><div class="bubble you">I was feeling quite lonely..</div></div>
+    <div class="bubble-container"><div class="bubble you">I wish...I could connect to my friends</div></div>
+    <div class="bubble-container"><div class="bubble me">Don't worry !</div></div>
+    <div class="bubble-container"><div class="bubble me">Chatter is here !</div></div>
+    
+    </div>
+  </div>
+
+<div class="input-field row">
+  <div class="col l11">
+    <input id="messageText" class="message-text" type="text" style="font-size:25px;"></div><div class="col l1">
+    <a class="btn-floating btn-large" id="messageButton"><i class="material-icons">send</i></a></div>
+  </div>
+</div>
+
+
+  <script type="text/javascript" src="/js/socket.io.js"></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/js/chat.js"></script>
+</body>
+</html>
